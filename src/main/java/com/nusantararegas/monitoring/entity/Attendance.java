@@ -20,7 +20,7 @@ public class Attendance {
     @Column(name = "attendance_id", nullable = false)
     private String attendanceId;
     @ManyToOne
-    @JoinColumn(name = "employee_id", nullable = false, unique = true)
+    @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;
     @ManyToOne
     @JoinColumn(name = "status_id", nullable = false)

@@ -2,6 +2,7 @@ package com.nusantararegas.monitoring.service;
 
 import com.nusantararegas.monitoring.dtos.AttendanceRequest;
 import com.nusantararegas.monitoring.dtos.AttendanceResponse;
+import com.nusantararegas.monitoring.dtos.OnDutyDto;
 import com.nusantararegas.monitoring.entity.Attendance;
 import com.nusantararegas.monitoring.entity.Employee;
 import com.nusantararegas.monitoring.entity.Status;
@@ -83,5 +84,18 @@ public class AttendanceService {
     public void deleteAttendance(String attendanceId) {
         // Implementation goes here
         attendanceRepository.deleteById(attendanceId);
+    }
+
+    @Transactional(readOnly = true)
+    public List<OnDutyDto> getCurrentOnDuty() {
+        List<Attendance> records = attendanceRepository.findLatestOnDuty();
+
+        return records.stream()
+                .map(r -> new OnDutyDto(
+                        r.getEmployee().getEmployeeId(),
+                        r.getEmployee().getFullName(),
+                        r.getNote()
+                ))
+                .toList();
     }
 }

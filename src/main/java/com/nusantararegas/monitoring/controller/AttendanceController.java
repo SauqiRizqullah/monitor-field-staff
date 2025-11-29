@@ -1,7 +1,9 @@
-package com.nusantararegas.monitoring.dtos;
+package com.nusantararegas.monitoring.controller;
 
+import com.nusantararegas.monitoring.dtos.AttendanceRequest;
+import com.nusantararegas.monitoring.dtos.AttendanceResponse;
+import com.nusantararegas.monitoring.dtos.OnDutyDto;
 import com.nusantararegas.monitoring.service.AttendanceService;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +41,11 @@ public class AttendanceController {
     public String deleteAttendance(@PathVariable String attendanceId) {
         attendanceService.deleteAttendance(attendanceId);
         return "Attendance deleted successfully";
+    }
+
+    @GetMapping("/on-duty")
+    public List<OnDutyDto> getOnDuty() {
+        return attendanceService.getCurrentOnDuty();
     }
 
 }
