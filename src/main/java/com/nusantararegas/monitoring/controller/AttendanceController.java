@@ -2,6 +2,7 @@ package com.nusantararegas.monitoring.controller;
 
 import com.nusantararegas.monitoring.dtos.AttendanceRequest;
 import com.nusantararegas.monitoring.dtos.AttendanceResponse;
+//import com.nusantararegas.monitoring.dtos.EmployeeStatusDto;
 import com.nusantararegas.monitoring.dtos.OnDutyDto;
 import com.nusantararegas.monitoring.service.AttendanceService;
 import lombok.RequiredArgsConstructor;
@@ -47,5 +48,10 @@ public class AttendanceController {
     public List<OnDutyDto> getOnDuty() {
         return attendanceService.getCurrentOnDuty();
     }
+
+//    @GetMapping("/status/all")
+//    public List<EmployeeStatusDto> getAllStatus() {
+//        return attendanceService.getAllEmployeeStatus();
+//    }
 
 }

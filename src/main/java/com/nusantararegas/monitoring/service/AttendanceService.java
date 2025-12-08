@@ -2,6 +2,7 @@ package com.nusantararegas.monitoring.service;
 
 import com.nusantararegas.monitoring.dtos.AttendanceRequest;
 import com.nusantararegas.monitoring.dtos.AttendanceResponse;
+//import com.nusantararegas.monitoring.dtos.EmployeeStatusDto;
 import com.nusantararegas.monitoring.dtos.OnDutyDto;
 import com.nusantararegas.monitoring.entity.Attendance;
 import com.nusantararegas.monitoring.entity.Employee;
@@ -94,8 +95,24 @@ public class AttendanceService {
                 .map(r -> new OnDutyDto(
                         r.getEmployee().getEmployeeId(),
                         r.getEmployee().getFullName(),
+                        r.getEmployee().getJobTitle(),
                         r.getNote()
                 ))
                 .toList();
     }
+
+//    @Transactional(readOnly = true)
+//    public List<EmployeeStatusDto> getAllEmployeeStatus() {
+//
+//        List<Attendance> latest = attendanceRepository.findLatestAttendancePerEmployee();
+//
+//        return latest.stream()
+//                .map(a -> new EmployeeStatusDto(
+//                        a.getEmployee().getEmployeeId(),
+//                        a.getEmployee().getFullName(),
+//                        a.getStatus().getStatusName(),
+//                        a.getNote()
+//                ))
+//                .toList();
+//    }
 }
